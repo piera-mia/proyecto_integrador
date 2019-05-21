@@ -1,0 +1,201 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.container {
+    width: 960px;
+    position: relative;
+    top: 10px;
+}
+
+.main-nav {
+    overflow: hidden;
+    background-color: #5831AF;
+    width: auto;
+}
+
+ul li {
+    list-style-type: none;
+    float: left;
+}
+
+.home {
+  font-weight: bolder;
+}
+
+.left-nav a {
+  font-size: 20px;
+    text-decoration: none;
+    display: block;
+    padding: 20px;
+    color: white;
+}
+
+h1 {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #5831AF;
+  color: white;
+  text-align: center;
+}
+
+#dropdownMenu2 {
+  background-color: #5831AF;
+  width: 100%;
+}
+
+.grupoSecciones {
+  margin-top: 10px;
+  overflow: hidden;
+  display: flex;
+}
+
+.seccion {
+  position: relative;
+  width: 33%;
+  height: 600px;
+  background-color: #5831AF;
+  margin: 2px;
+}
+
+.seccion p {
+  text-align: justify;
+  margin: 10px;
+}
+
+.imagenSeccion {
+  display: block;
+  height: 150px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tituloSeccion {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.parrafoSeccion {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #FFFFFF;
+}
+
+.ingresarSeccion {
+  text-align: center;
+  text-decoration: none;
+  background-color: rgba(255,0,0,0.7);
+  color: white;
+}
+
+.formLogin h2 {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.login-boton {
+  text-align: center;
+}
+
+.btn-primary {
+  width: 20%;
+  background-color: #5831AF;
+}
+
+.login-boton a {
+    text-decoration: none;
+    display: block;
+    color: white;
+}
+
+.accordion {
+  color: white;
+}
+
+.card {
+  background-color: #5831AF;
+}
+
+.card-header {
+  background-color: #5831AF;
+  border: 0;
+}
+
+.collapse {
+  justify-content: center;
+
+}
+
+.collapsed {
+  text-decoration: none;
+  width: 100%;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: left;
+
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 500px;
+}
+
+.divBoton {
+  position: absolute;
+  bottom: 0px;
+}
+
+.ingresarSeccion{
+    position: absolute;
+    bottom: 30px;
+    left: 30%;
+    display: block;
+    width: 40%;
+    padding: 5px;
+    text-decoration: none;
+    background-color: rgba(255,0,0,0.7);
+    color: white;
+    text-align: center;
+
+}
+.ingresarSeccion:hover{
+    background-color: rgba(255,0,0,1);
+    text-decoration: none;
+
+}
+
+.footer {
+  margin-top: 20px;
+  background-color: #757377;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 40px;
+  color: white;
+
+}
+
+.fab {
+  padding-left: 20px;
+  padding-top: 13px;
+  color: white;
+}
+
+.parrafoFooter{
+  padding-top: 5px;
+  color: white;
+  font-size: 20px;
+
+}
+
+.footer ul li .fa-facebook{
+  margin-left: 20px;
+}
