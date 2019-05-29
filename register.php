@@ -1,3 +1,23 @@
+<?php
+// // require_once("helpers.php");
+// // require_once("controladores/funciones.php");
+// if($_POST){
+//   $errores = validar($_POST);
+//
+// }
+//
+//
+// if(count($errores)==0){
+//
+// header("location:login.php");
+//
+// exit;
+//
+// }
+
+ ?>
+
+
 <!doctype html>
 <html>
   <head>
@@ -18,16 +38,16 @@
         <nav class="main-nav">
 
             <ul class="left-nav">
-              <li class="home"><a href="index.html"> Home </a></li>
-              <li><a href="faq.html"> FAQ's </a></li>
-              <li><a href="login.html"> Login </a></li>
-              <li><a href="register.html"> Register </a></li>
+              <li class="home"><a href="index.php"> Home </a></li>
+              <li><a href="faq.php"> FAQ's </a></li>
+              <li><a href="login.php"> Login </a></li>
+              <li><a href="register.php"> Register </a></li>
             </ul>
         </nav>
       </header>
 
       <main>
-      <form class="formLogin">
+      <form class="formLogin" action="" method="POST" enctype= "multipart/form-data">
         <div>
           <h2> Register </h2>
           <br>
@@ -36,11 +56,11 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputName4"> Nombre </label>
-            <input type="name" class="form-control" id="inputName4" placeholder="Nombre">
+            <input type="name" class="form-control" id="inputName4"  placeholder="Nombre" name="nombre">
           </div>
           <div class="form-group col-md-8">
             <label for="inputSurname4"> Apellido </label>
-            <input type="surname" class="form-control" id="inputSurname4" placeholder="Apellido">
+            <input type="surname" class="form-control" id="inputSurname4" placeholder="Apellido" name="apellido">
           </div>
         </div>
 
@@ -58,22 +78,22 @@
           </div>
           <div class="form-group col-md-5">
             <label for="inputZip"> Edad </label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" name="edad">
           </div>
           <div class="form-group col-md-5">
             <label for="inputAddress"> Región </label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Campana, Zárate, CABA u otra">
+            <input type="text" class="form-control" id="inputAddress" placeholder="Campana, Zárate, CABA u otra" name="region">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputCity"> Peso (kg) </label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" name="peso">
           </div>
           <div class="form-group col-md-4">
             <label for="inputZip"> Altura (en cm) </label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" name="altura">
           </div>
           <div class="form-group col-md-4">
             <label for="inputState"> Ritmo medio en carrera </label>
@@ -90,11 +110,11 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4"> Contraseña </label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña">
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" name="password">
           </div>
         </div>
 
