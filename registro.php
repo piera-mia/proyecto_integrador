@@ -1,19 +1,17 @@
 <?php
-// // require_once("helpers.php");
-// // require_once("controladores/funciones.php");
-// if($_POST){
-//   $errores = validar($_POST);
-//
-// }
-//
-//
-// if(count($errores)==0){
-//
-// header("location:login.php");
-//
-// exit;
-//
-// }
+require_once("helpers.php");
+require_once("controladores/funciones.php");
+if($_POST){
+  $errores = validar($_POST);
+  if(count($errores)== 0){
+    $avatar = armarAvatar($_FILES);
+    $usuario = armarUsuario($_POST,$avatar);
+    guardarUsuario($usuario);
+    header("location: login.php");
+    exit;
+
+}
+}
 
  ?>
 
@@ -41,7 +39,7 @@
               <li class="home"><a href="index.php"> Home </a></li>
               <li><a href="faq.php"> FAQ's </a></li>
               <li><a href="login.php"> Login </a></li>
-              <li><a href="register.php"> Register </a></li>
+              <li><a href="registro.php"> Register </a></li>
             </ul>
         </nav>
       </header>
@@ -56,11 +54,21 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputName4"> Nombre </label>
-            <input type="name" class="form-control" id="inputName4"  placeholder="Nombre" name="nombre">
+            <input type="name" class="form-control" id="inputName4"  placeholder="Nombre" name="nombre" value="">
+            <?php if(isset($errores["nombre"])) :?>
+               <span>
+                 <?php echo $errores["nombre"] ?>
+              </span>
+            <?php endif; ?>
           </div>
           <div class="form-group col-md-8">
             <label for="inputSurname4"> Apellido </label>
             <input type="surname" class="form-control" id="inputSurname4" placeholder="Apellido" name="apellido">
+            <?php if(isset($errores["apellido"])) :?>
+       <span>
+          <?php echo $errores["apellido"] ?>
+       </span>
+    <?php endif; ?>
           </div>
         </div>
 
@@ -75,14 +83,25 @@
               <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
               <label class="form-check-label" for="gridRadios2"> Femenino </label>
             </div>
+
           </div>
           <div class="form-group col-md-5">
             <label for="inputZip"> Edad </label>
             <input type="text" class="form-control" name="edad">
+              <?php if(isset($errores["edad"])) :?>
+                <span>
+              <?php echo $errores["edad"] ?>
+                </span>
+              <?php endif; ?>
           </div>
           <div class="form-group col-md-5">
             <label for="inputAddress"> Región </label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Campana, Zárate, CABA u otra" name="region">
+            <?php if(isset($errores["region"])) :?>
+              <span>
+            <?php echo $errores["region"] ?>
+              </span>
+            <?php endif; ?>
           </div>
         </div>
 
@@ -90,10 +109,20 @@
           <div class="form-group col-md-4">
             <label for="inputCity"> Peso (kg) </label>
             <input type="text" class="form-control" name="peso">
+            <?php if(isset($errores["peso"])) :?>
+              <span>
+            <?php echo $errores["peso"] ?>
+              </span>
+            <?php endif; ?>
           </div>
           <div class="form-group col-md-4">
             <label for="inputZip"> Altura (en cm) </label>
             <input type="text" class="form-control" name="altura">
+            <?php if(isset($errores["altura"])) :?>
+              <span>
+            <?php echo $errores["altura"] ?>
+              </span>
+            <?php endif; ?>
           </div>
           <div class="form-group col-md-4">
             <label for="inputState"> Ritmo medio en carrera </label>
@@ -111,15 +140,36 @@
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
             <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+            <?php if(isset($errores["email"])) :?>
+              <span>
+            <?php echo $errores["email"] ?>
+              </span>
+            <?php endif; ?>
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4"> Contraseña </label>
             <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" name="password">
+            <?php if(isset($errores["password"])) :?>
+              <span>
+            <?php echo $errores["password"] ?>
+              </span>
+            <?php endif; ?>
           </div>
         </div>
 
+        <div class="form-group text-center">
+        <label for="imagen"> Foto de perfil </label>
+        <br>
+        <input type="file" name="imagen" >
+        <?php if(isset($errores["imagen"])) :?>
+           <span>
+              <?php echo $errores["imagen"] ?>
+           </span>
+        <?php endif; ?>
+      </div>
+
         <div class="login-boton">
-          <button type="submit" class="btn btn-primary"> Register </button>
+          <button type="submit" class="btn btn-primary"> Enviar </button>
         </div>
 
       </form>

@@ -1,4 +1,4 @@
-  <!doctype html>
+<!doctype html>
 <html>
   <head>
     <!-- Required meta tags -->
@@ -19,7 +19,7 @@
               <li class="home"> <a href="index.php"> Home </a> </li>
               <li><a href="faq.php"> FAQ's </a></li>
               <li><a href="login.php"> Login </a></li>
-              <li><a href="register.php"> Register </a></li>
+              <li><a href="registro.php"> Registro </a></li>
             </ul>
         </nav>
       </header>
@@ -84,8 +84,6 @@
             <a class="ingresarSeccion" href="#"> Ingresar </a>
           </article>
         </div>
-
-
 
         <footer>
           <section class="footer row d-flex">
