@@ -6,9 +6,10 @@ function dd($valor){
     exit;
 }
 
-function persistir($input){
-    if(isset($_POST[$input])){
+function persistir($input) {
+  if(isset($_SESSION[$input])) {
+     return $_SESSION[$input];
+  } elseif(isset($_POST[$input])) {
        return $_POST[$input];
     }
-
 }

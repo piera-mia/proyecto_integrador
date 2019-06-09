@@ -1,49 +1,24 @@
 <?php
-require_once("helpers.php");
-require_once("controladores/funciones.php");
-if($_POST){
-  $errores = validar($_POST);
-  if(count($errores)== 0){
-    $avatar = armarAvatar($_FILES);
-    $usuario = armarUsuario($_POST,$avatar);
-    guardarUsuario($usuario);
-    header("location: login.php");
-    exit;
-
-}
-}
-
- ?>
-
+  require_once("helpers.php");
+  require_once("controladores/funciones.php");
+  if ($_POST) {
+    $errores = validar($_POST,"registro");
+    if (count($errores)== 0) {
+      $perfil = armarperfil($_FILES);
+      $usuario = armaruser($_POST,$perfil);
+      guardaruser($usuario);
+      header("location: login.php");
+      exit;
+    }
+  }
+?>
 
 <!doctype html>
 <html>
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
-    <title> Proyecto Integrador </title>
-  </head>
-
+  <?php include("head.php");?>
   <body>
     <div class="container">
-      <header class="encabezado">
-        <nav class="main-nav">
-
-            <ul class="left-nav">
-              <li class="home"><a href="index.php"> Home </a></li>
-              <li><a href="faq.php"> FAQ's </a></li>
-              <li><a href="login.php"> Login </a></li>
-              <li><a href="registro.php"> Register </a></li>
-            </ul>
-        </nav>
-      </header>
-
+      <?php include("header.php");?>
       <main>
       <form class="formLogin" action="" method="POST" enctype= "multipart/form-data">
         <div>
@@ -54,7 +29,7 @@ if($_POST){
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputName4"> Nombre </label>
-            <input type="name" class="form-control" id="inputName4"  placeholder="Nombre" name="nombre" value="">
+            <input type="name" class="form-control" id="inputName4"  placeholder="Nombre" name="nombre" value="<?= isset($errores["nombre"])? "": persistir("nombre") ?>">
             <?php if(isset($errores["nombre"])) :?>
                <span>
                  <?php echo $errores["nombre"] ?>
@@ -63,7 +38,7 @@ if($_POST){
           </div>
           <div class="form-group col-md-8">
             <label for="inputSurname4"> Apellido </label>
-            <input type="surname" class="form-control" id="inputSurname4" placeholder="Apellido" name="apellido">
+            <input type="surname" class="form-control" id="inputSurname4" placeholder="Apellido" name="apellido" value="<?= isset($errores["apellido"])? "": persistir("apellido") ?>">
             <?php if(isset($errores["apellido"])) :?>
        <span>
           <?php echo $errores["apellido"] ?>
@@ -76,18 +51,18 @@ if($_POST){
           <div class="form-group col-md-2">
             <label for="inputCity"> Sexo </label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+              <input class="form-check-input" type="radio" name="sexo" id="gridRadios1" value="M" checked>
               <label class="form-check-label" for="gridRadios1"> Masculino </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+              <input class="form-check-input" type="radio" name="sexo" id="gridRadios2" value="F">
               <label class="form-check-label" for="gridRadios2"> Femenino </label>
             </div>
 
           </div>
           <div class="form-group col-md-5">
             <label for="inputZip"> Edad </label>
-            <input type="text" class="form-control" name="edad">
+            <input type="text" class="form-control" name="edad" value="<?= isset($errores["edad"])? "": persistir("edad") ?>">
               <?php if(isset($errores["edad"])) :?>
                 <span>
               <?php echo $errores["edad"] ?>
@@ -96,7 +71,7 @@ if($_POST){
           </div>
           <div class="form-group col-md-5">
             <label for="inputAddress"> Región </label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Campana, Zárate, CABA u otra" name="region">
+            <input type="text" class="form-control" id="inputAddress" placeholder="Campana, Zárate, CABA u otra" name="region" value="<?= isset($errores["region"])? "": persistir("region") ?>">
             <?php if(isset($errores["region"])) :?>
               <span>
             <?php echo $errores["region"] ?>
@@ -108,7 +83,7 @@ if($_POST){
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputCity"> Peso (kg) </label>
-            <input type="text" class="form-control" name="peso">
+            <input type="text" class="form-control" name="peso" value="<?= isset($errores["peso"])? "": persistir("peso") ?>">
             <?php if(isset($errores["peso"])) :?>
               <span>
             <?php echo $errores["peso"] ?>
@@ -117,7 +92,7 @@ if($_POST){
           </div>
           <div class="form-group col-md-4">
             <label for="inputZip"> Altura (en cm) </label>
-            <input type="text" class="form-control" name="altura">
+            <input type="text" class="form-control" name="altura" value="<?= isset($errores["altura"])? "": persistir("altura") ?>">
             <?php if(isset($errores["altura"])) :?>
               <span>
             <?php echo $errores["altura"] ?>
@@ -126,20 +101,20 @@ if($_POST){
           </div>
           <div class="form-group col-md-4">
             <label for="inputState"> Ritmo medio en carrera </label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option> Menor a 4 min/km </option>
-              <option> 4 a 5 min/km </option>
-              <option> 5 a 6 min/km </option>
-              <option> Mayor a 6 min/km </option>
+            <select id="inputState" class="form-control" name="ritmo" value="<?= isset($errores["ritmo"])? "": persistir("ritmo") ?>">
+              <option selected>Elige...</option>
+              <option> Menor a 5 min por km </option>
+              <option> 5 a 6 min por km </option>
+              <option> Mayor a 6 min por km </option>
+              <option> Sin referencias </option>
             </select>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputEmail4">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+            <label for="inputEmail4"> Email </label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?= isset($errores["email"])? "": persistir("email") ?>">
             <?php if(isset($errores["email"])) :?>
               <span>
             <?php echo $errores["email"] ?>
@@ -148,7 +123,7 @@ if($_POST){
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4"> Contraseña </label>
-            <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" name="password">
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Contraseña" name="password" value="<?= isset($errores["password"])? "": persistir("password") ?>">
             <?php if(isset($errores["password"])) :?>
               <span>
             <?php echo $errores["password"] ?>
@@ -157,41 +132,42 @@ if($_POST){
           </div>
         </div>
 
-        <div class="form-group text-center">
-        <label for="imagen"> Foto de perfil </label>
-        <br>
-        <input type="file" name="imagen" >
-        <?php if(isset($errores["imagen"])) :?>
-           <span>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputCity"> Ya sos parte del equipo? </label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="equipo" id="gridRadios1" value="S">
+              <label class="form-check-label" for="gridRadios1"> Sí </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="equipo" id="gridRadios2" value="N">
+              <label class="form-check-label" for="gridRadios2"> No </label>
+            </div>
+            <?php if(isset($errores["equipo"])) :?>
+            <span>
+            <?php echo $errores["equipo"] ?>
+            </span>
+            <?php endif; ?>
+          </div>
+            <div class="form-group col-md-6">
+              <label for="imagen"> Foto de perfil </label>
+              <br>
+              <input type="file" name="imagen">
+              <?php if(isset($errores["imagen"])) :?>
+              <span>
               <?php echo $errores["imagen"] ?>
-           </span>
-        <?php endif; ?>
+              </span>
+              <?php endif; ?>
+            </div>
+        </div>
       </div>
 
         <div class="login-boton">
           <button type="submit" class="btn btn-primary"> Enviar </button>
         </div>
-
       </form>
 
-      <footer>
-        <section class="footer row d-flex">
-          <article class="col-12 col-md-12 col-lg-12">
-            <ul class"d-flex justify-content-center">
-              <li><p class="parrafoFooter"> Follow us </p></li>
-              <li><a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href="https://ar.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-              </li>
-            </ul>
-          </article>
-        </section>
-    </footer>
-
+      <?php include("footer.php");?>
     </main>
 
     <!-- Optional JavaScript -->

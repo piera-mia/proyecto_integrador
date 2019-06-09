@@ -1,28 +1,14 @@
+<?php
+require_once("helpers.php");
+require_once("controladores/funciones.php");
+?>
+
 <!doctype html>
 <html>
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <title> Proyecto Integrador </title>
-  </head>
-
+  <?php include("head.php");?>
   <body >
     <div class="container">
-      <header class="encabezado">
-        <nav class="main-nav">
-            <ul class="left-nav">
-              <li class="home"> <a href="index.php"> Home </a> </li>
-              <li><a href="faq.php"> FAQ's </a></li>
-              <li><a href="login.php"> Login </a></li>
-              <li><a href="registro.php"> Registro </a></li>
-            </ul>
-        </nav>
-      </header>
+      <?php include("header.php");?>
       <br>
 
       <main>
@@ -85,23 +71,7 @@
           </article>
         </div>
 
-        <footer>
-          <section class="footer row d-flex">
-            <article class="col-12 col-md-12 col-lg-12">
-              <ul class"d-flex justify-content-center">
-                <li><p class="parrafoFooter"> Follow us </p></li>
-                <li><a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-                </li>
-                <li>
-                  <a href="https://ar.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-                </li>
-              </ul></h4>
-            </article>
-          </section>
-      </footer>
+        <?php include("footer.php");?>
 
       </main>
     </div>
