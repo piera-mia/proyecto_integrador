@@ -1,3 +1,30 @@
+<?php
+  require_once("helpers.php");
+  require_once("controladores/funciones.php");
+  if ($_POST) {
+    $errores = validar($_POST,"login");
+      if (count($errores) == 0) {
+      $usuario = buscar_email($_POST["email"]);
+      if ($usuario == null) {
+        $errores["email"]= "Usuario / Contraseña invalidos";
+      } else {
+        if (password_verify($_POST["password"],$usuario["password"])==false) {
+          $errores["password"]="Usuario / Contraseña invalidos";
+        } else {
+          set_user($usuario,$_POST);
+          if (valid_access()) {
+            header("location: index.php");
+            exit;
+          } else {
+            header("location: login.php");
+            exit;
+          }
+        }
+      }
+    }
+  }
+?>
+
 <!doctype html>
 <html>
   <?php include("head.php");?>

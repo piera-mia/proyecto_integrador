@@ -9,7 +9,6 @@ require_once("controladores/funciones.php");
   <body >
     <div class="container">
       <?php include("header.php");?>
-      <br>
 
       <main>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

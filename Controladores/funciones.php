@@ -107,9 +107,10 @@ function armarperfil($imagen) {
     $ext = pathinfo($imagen["imagen"]["name"],PATHINFO_EXTENSION);
     $archivo = $imagen["imagen"]["tmp_name"];
     $destino = dirname(__DIR__);
-    $destino = $destino."/fotosUsers/";
+    $destino = $destino."/img/fotosUsers/";
     $avatar = uniqid();
     $destino = $destino.$avatar.".".$ext;
+
     move_uploaded_file($archivo,$destino);
     $avatar = $avatar.".".$ext;
     return $avatar;

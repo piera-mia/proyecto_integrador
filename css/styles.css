@@ -14,27 +14,46 @@ body {
     top: 10px;
 }
 
-.main-nav {
-    overflow: hidden;
+/* Add a black background color to the top navigation */
+.topnav {
     background-color: #5831AF;
-    width: auto;
+    overflow: hidden;
 }
 
-ul li {
-    list-style-type: none;
-    float: left;
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 17px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  font-weight: bold;
+  color: white;
+}
+
+.topnav div {
+  float: right;
+  color: #f2f2f2;
+}
+
+.topnav div p {
+  font-size: 17px;
+  margin: 17px;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  position: relative;
+  float: right;
 }
 
 .home {
   font-weight: bolder;
-}
-
-.left-nav a {
-    font-size: 20px;
-    text-decoration: none;
-    display: block;
-    padding: 20px;
-    color: white;
 }
 
 h1 {
