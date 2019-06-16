@@ -1,17 +1,14 @@
 <footer>
   <section class="footer row d-flex">
-    <article class="col-12 col-md-12 col-lg-12">
-      <ul class"d-flex justify-content-center">
-        <li><p class="parrafoFooter"> Follow us </p></li>
-        <li><a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-        </li>
-        <li>
-          <a href="https://ar.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-        </li>
-      </ul>
-    </article>
+      <div class= "divFooter">
+        <div class="followUs">
+          <p>Follow us</p>
+        </div>
+        <div class="iconosFooter">
+            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://ar.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
   </section>
 </footer>

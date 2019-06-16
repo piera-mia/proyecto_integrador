@@ -18,6 +18,7 @@
           <p class="saludo"><?= "Hola, ".$_SESSION["nombre"];?></p>
         </div>
 
+
       </div>
     <?php endif; ?>
   </div>
