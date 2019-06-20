@@ -51,11 +51,11 @@
           <div class="form-group col-md-2">
             <label for="inputCity"> Sexo </label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="gridRadios1" value="M" checked>
+              <input class="form-check-input" type="radio" name="sexo" id="gridRadios1" value="M" <?= (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == "F" )? "checked" : "" ; ?>>
               <label class="form-check-label" for="gridRadios1"> Masculino </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="gridRadios2" value="F">
+              <input class="form-check-input" type="radio" name="sexo" id="gridRadios2" value="F" <?= (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == "F" )? "checked" : "" ; ?>>
               <label class="form-check-label" for="gridRadios2"> Femenino </label>
             </div>
 
@@ -102,11 +102,11 @@
           <div class="form-group col-md-4">
             <label for="inputState"> Ritmo medio en carrera </label>
             <select id="inputState" class="form-control" name="ritmo" value="<?= isset($errores["ritmo"])? "": persistir("ritmo") ?>">
-              <option selected>Elige...</option>
-              <option> Menor a 5 min por km </option>
-              <option> 5 a 6 min por km </option>
-              <option> Mayor a 6 min por km </option>
-              <option> Sin referencias </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Elige..." )? "selected" : "" ; ?>>Elige...</option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Menor a 5 min por km" )? "selected" : "" ; ?>> Menor a 5 min por km </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "5 a 6 min por km" )? "selected" : "" ; ?>> 5 a 6 min por km </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Mayor a 6 min por km" )? "selected" : "" ; ?>> Mayor a 6 min por km </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Sin referencias" )? "selected" : "" ; ?>> Sin referencias </option>
             </select>
           </div>
         </div>
@@ -136,11 +136,11 @@
           <div class="form-group col-md-4">
             <label for="inputCity"> Ya sos parte del equipo? </label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="equipo" id="gridRadios1" value="S">
+              <input class="form-check-input" type="radio" name="equipo" id="gridRadios1" value="S" <?= (isset($_SESSION["equipo"]) && $_SESSION["equipo"] == "S" )? "checked" : "" ; ?>>
               <label class="form-check-label" for="gridRadios1"> Sí </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="equipo" id="gridRadios2" value="N">
+              <input class="form-check-input" type="radio" name="equipo" id="gridRadios2" value="N" <?= (isset($_SESSION["equipo"]) && $_SESSION["equipo"] == "N" )? "checked" : "" ; ?>>
               <label class="form-check-label" for="gridRadios2"> No </label>
             </div>
             <?php if(isset($errores["equipo"])) :?>
