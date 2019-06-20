@@ -228,3 +228,8 @@ footer{
 span {
   color: red;
 }
+
+.avatar {
+  margin-left: 10px;
+  display: inline;
+}

@@ -15,7 +15,7 @@
         <a href="edit.php">Editar Perfil</a>
 
         <div>
-          <p class="saludo"><?= "Hola, ".$_SESSION["nombre"];?></p>
+          <p class="saludo"><?= "Hola, ".$_SESSION["nombre"];?><img class="avatar" src="img/fotosUsers/<?=$_SESSION["imagen"];?>" alt="foto_perfil" height="30px"></p>
         </div>
 
 

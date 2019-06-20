@@ -1,8 +1,15 @@
 <?php
   require_once("helpers.php");
-  require_once("controladores/funciones.php");
+  require_once("Controladores/funciones.php");
   if ($_POST) {
     $errores = validar($_POST,"login");
+    if (isset($errores["email"])) {
+      $notificacion = $errores["email"];
+    } elseif (buscar_email($_POST["email"]) == null) {
+          $notificacion = "Usuario inválido";
+          } else {
+              $notificacion = "Le hemos enviado un correo electrónico a su casilla para verificar su contraseña";
+              }
   }
 ?>
 
@@ -22,17 +29,12 @@
           <div class="form-group">
             <label for="exampleInputEmail1"> Por favor ingresá tu mail para recuperar tu clave: </label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su email" name="email" value="<?= isset($errores["email"])? "": persistir("email") ?>">
-            <?php if(isset($errores["email"])) :?>
-              <span>
-            <?php echo $errores["email"] ?>
-              </span>
-            <?php endif; ?>
           </div>
 
           <div class="login-boton">
             <button type="submit" class="btn btn-primary"> Aceptar </button>
           </div>
-          <span><?= (count($errores) == 0)? "Le hemos enviado un correo electrónico a su casilla para verificar su contraseña": "" ?></span>
+          <span><?= ($_POST)? $notificacion : "" ?></span>
         </form>
         <?php include("footer.php");?>
       </main>
