@@ -28,12 +28,6 @@ function validar($datos,$bandera) {
         $errores["edad"]="El campo debe ser un número";
       }
     }
-    if(isset($datos["region"])) {
-      $region = trim($datos["region"]);
-      if(empty($region)) {
-        $errores["region"]="El campo no puede estar vacío";
-      }
-    }
     if(isset($datos["peso"])) {
       $peso = trim($datos["peso"]);
       if (!empty($peso)&&!is_numeric($peso)) {
@@ -48,11 +42,6 @@ function validar($datos,$bandera) {
         $errores["altura"]="La altura debe ser al menos 100 cm";
       }
     }
-    if(isset($datos["ritmo"])) {
-      if ($datos["ritmo"]=="Elige...") {
-        $errores["ritmo"]="Debe seleccionar un ritmo";
-      }
-    }
     if(isset($datos["email"])) {
       $email = trim($datos["email"]);
       if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
@@ -65,11 +54,6 @@ function validar($datos,$bandera) {
           $errores["password"] = "El password no puede estar vacío";
       } elseif(strlen($password) <6) {
           $errores["password"] = "El password debe tener como mínimo 6 caracteres";
-      }
-    }
-    if(isset($datos["equipo"])) {
-      if (empty($datos["equipo"])) {
-        $errores["equipo"]="Debe indicar si ya forma parte de Runners Campana";
       }
     }
     if (isset($_FILES)) {
@@ -122,13 +106,10 @@ function armaruser($datos,$imagen) {
         "apellido"=>$datos["apellido"],
         "sexo"=>$datos["sexo"],
         "edad"=>$datos["edad"],
-        "region"=>$datos["region"],
         "peso"=>$datos["peso"],
         "altura"=>$datos["altura"],
-        "ritmo"=>$datos["ritmo"],
         "email"=>$datos["email"],
         "password"=>password_hash($datos["password"],PASSWORD_DEFAULT),
-        "equipo"=>$datos["equipo"],
         "imagen"=>$imagen
     ];
     return $usuario;

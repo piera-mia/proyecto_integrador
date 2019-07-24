@@ -2,7 +2,6 @@
   <section class="footer row d-flex">
       <div class= "divFooter">
         <div class="followUs">
-          <p>Follow us</p>
         </div>
         <div class="iconosFooter">
             <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
