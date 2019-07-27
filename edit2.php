@@ -55,7 +55,26 @@
             <?php echo $errores["password"] ?>
               </span>
             <?php endif; ?>
-          </div>          
+          </div>
+          <div class="form-group col-md-5">
+            <label for="inputAddress"> Región </label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="Campana, Zárate, CABA u otra" name="region" value="<?= isset($errores["region"])? "": persistir("region") ?>">
+            <?php if(isset($errores["region"])) :?>
+              <span>
+            <?php echo $errores["region"] ?>
+              </span>
+            <?php endif; ?>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="inputState"> Ritmo medio en carrera </label>
+            <select id="inputState" class="form-control" name="ritmo" value="<?= isset($errores["ritmo"])? "": persistir("ritmo") ?>">
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Elige..." )? "selected" : "" ; ?>>Elige...</option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Menor a 5 min por km" )? "selected" : "" ; ?>> Menor a 5 min por km </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "5 a 6 min por km" )? "selected" : "" ; ?>> 5 a 6 min por km </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Mayor a 6 min por km" )? "selected" : "" ; ?>> Mayor a 6 min por km </option>
+              <option <?= (isset($_SESSION["ritmo"]) && $_SESSION["ritmo"] == "Sin referencias" )? "selected" : "" ; ?>> Sin referencias </option>
+            </select>
+          </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recordar">
             <label class="form-check-label" for="exampleCheck1"> Recuérdame </label>

@@ -50,38 +50,38 @@
           <div class="form-group col-md-2">
             <label for="inputCity"> Sexo </label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="gridRadios1" value="M" <?= (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == "F" )? "checked" : "" ; ?>>
+              <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="M" <?= (isset($_SESSION["gender"]) && $_SESSION["gender"] == "F" )? "checked" : "" ; ?>>
               <label class="form-check-label" for="gridRadios1"> M </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="gridRadios2" value="F" <?= (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == "F" )? "checked" : "" ; ?>>
+              <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="F" <?= (isset($_SESSION["gender"]) && $_SESSION["gender"] == "F" )? "checked" : "" ; ?>>
               <label class="form-check-label" for="gridRadios2"> F </label>
             </div>
           </div>
           <div class="form-group col-md-2">
             <label for="inputZip"> Edad </label>
-            <input type="text" class="form-control" name="edad" value="<?= isset($errores["edad"])? "": persistir("edad") ?>">
-              <?php if(isset($errores["edad"])) :?>
+            <input type="text" class="form-control" name="age" value="<?= isset($errores["age"])? "": persistir("age") ?>">
+              <?php if(isset($errores["age"])) :?>
                 <span>
-              <?php echo $errores["edad"] ?>
+              <?php echo $errores["age"] ?>
                 </span>
               <?php endif; ?>
           </div>
           <div class="form-group col-md-2">
             <label for="inputCity"> Peso (kg) </label>
-            <input type="text" class="form-control" name="peso" value="<?= isset($errores["peso"])? "": persistir("peso") ?>">
-            <?php if(isset($errores["peso"])) :?>
+            <input type="text" class="form-control" name="weight" value="<?= isset($errores["weight"])? "": persistir("weight") ?>">
+            <?php if(isset($errores["weight"])) :?>
               <span>
-            <?php echo $errores["peso"] ?>
+            <?php echo $errores["weight"] ?>
               </span>
             <?php endif; ?>
           </div>
           <div class="form-group col-md-2">
             <label for="inputZip"> Altura (en cm) </label>
-            <input type="text" class="form-control" name="altura" value="<?= isset($errores["altura"])? "": persistir("altura") ?>">
-            <?php if(isset($errores["altura"])) :?>
+            <input type="text" class="form-control" name="height" value="<?= isset($errores["height"])? "": persistir("height") ?>">
+            <?php if(isset($errores["height"])) :?>
               <span>
-            <?php echo $errores["altura"] ?>
+            <?php echo $errores["height"] ?>
               </span>
             <?php endif; ?>
           </div>
@@ -89,7 +89,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4"> Email </label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email" value="<?= isset($errores["email"])? "": persistir("email") ?>">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="emaavataril" value="<?= isset($errores["email"])? "": persistir("email") ?>">
             <?php if(isset($errores["email"])) :?>
               <span>
             <?php echo $errores["email"] ?>
@@ -110,10 +110,10 @@
             <div class="form-group col-md-6">
               <label for="imagen"> Foto de perfil </label>
               <br>
-              <input type="file" name="imagen">
-              <?php if(isset($errores["imagen"])) :?>
+              <input type="file" name="avatar">
+              <?php if(isset($errores["avatar"])) :?>
               <span>
-              <?php echo $errores["imagen"] ?>
+              <?php echo $errores["avatar"] ?>
               </span>
               <?php endif; ?>
             </div>
