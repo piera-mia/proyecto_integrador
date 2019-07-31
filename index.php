@@ -39,40 +39,30 @@ require_once("controladores/funciones.php");
         <div class="presentacion">
             <h1> Runners Campana </h1>
             <p> Somos corredores recreativos y profesionales. El grupo de entrenamiento tiene sede en el campito de Siderca (ciudad de Campana). Los entrenamientos están dirigidos según el nivel y objetivo de cada atleta desde los niveles iniciales hasta avanzados, trabajando sobre objetivos como son las carreras de calle, trail y montaña en variadas distancias (corta, mediana y larga). </p>
-            <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <strong> Sumáte a nuestro equipo! </strong> </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <button class="dropdown-item" type="button"> Semillero Runners (menores de 12 años) </button>
-                  <button class="dropdown-item" type="button"> Adultos recreativo </button>
-                  <button class="dropdown-item" type="button"> Maratonistas y ultramaratonistas </button>
-                </div>
-            </div>
         </div>
 
         <div class="grupoSecciones">
           <article class="seccion">
             <img class= "imagenSeccion" src="img/man-running.png" alt="">
-            <h3 class= "tituloSeccion">Desafiá tus propios límites</h3>
-            <p> Sólo bastan 21 días para convertir algo en rutina. Así que, ¡no te detengas! La meta conseguirá que te sientas feliz y satisfecho contigo mismo. </p>
-            <a class="ingresarSeccion" href="#"> Ingresar </a>
+            <h3 class= "tituloSeccion">Entrenamiento</h3>
+            <p> Para cumplir tus retos tienes que trabajar duro. Chequea las rutinas que el profe te va asignando. </p>
+            <a class="ingresarSeccion" href="entrenamientos.php"> Ingresar </a>
           </article>
           <article class="seccion">
             <img class= "imagenSeccion" src="img/woman-running.png" alt="">
-            <h3 class= "tituloSeccion"> Entrená al aire libre </h3>
-            <p> Está comprobado que la actividad física al aire libre mejora nuestra calidad de vida social, psicológica y anímica donde el individuo se desarrolla plenamente en la actividad elegida. </p>
-            <a class="ingresarSeccion" href="#"> Ingresar </a>
+            <h3 class= "tituloSeccion"> Carreras </h3>
+            <p> Echa un vistazo a todas las carreras preparadas para vos. ¿Cuál será tu próximo reto? </p>
+            <a class="ingresarSeccion" href="carreras.php"> Ingresar </a>
           </article>
           <article class="seccion">
             <img class= "imagenSeccion" src="img/both-running.png" alt="">
-            <h3 class= "tituloSeccion"> Creá espíritu de equipo </h3>
-            <p> El acondicionamiento físico acompañado por la teoría, el asesoramiento personalizado, consejos y planificaciones junto con las devoluciones constantes de los alumnos hace que los resultados sean mucho más eficientes. </p>
-            <a class="ingresarSeccion" href="#"> Ingresar </a>
+            <h3 class= "tituloSeccion"> Usuarios </h3>
+            <p> Conoce a los runners que integran está magnífica comunidad y desafíalos a superarte. </p>
+            <a class="ingresarSeccion" href="usuarios.php"> Ingresar </a>
           </article>
         </div>
-
-        <?php include("footer.php");?>
-
-      </main>
+        </main>
+      <?php include("footer.php");?>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

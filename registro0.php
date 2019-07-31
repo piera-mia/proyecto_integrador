@@ -1,49 +1,14 @@
 <?php
-  require_once("autoload.php");
   require_once("helpers.php");
-
+  require_once("controladores/funciones.php");
   if ($_POST) {
-    //Esta variable es quien controla si se desea guardar en archivo JSON o en MYSQL
-    $tipoConexion = "MYSQL";
-    // Si la función retorn false, significa que se va a guardar los datos en JSON, de lo contrario se guardará los datos en MYSQL
-    if ($tipoConexion=="JSON") {
-      require_once("controladores/funciones.php");
-      $usuario = new Usuario($_POST["nombre"],$_POST["apellido"],$_POST["sexo"],$_POST["edad"],$_POST["peso"],$_POST["altura"],$_POST["email"],$_POST["password"],$_FILES);
-      $errores = $validar->validacionUsuario($usuario);
-      if(count($errores)==0) {
-        $usuarioEncontrado = $json->buscarEmail($usuario->getEmail());
-        if($usuarioEncontrado != null) {
-          $errores["email"]="Usuario ya registrado";
-        } else {
-          $avatar = $registro->armarAvatar($usuario->getAvatar());
-          $registroUsuario = $registro->armarUsuario($usuario,$avatar);
-          $json->guardar($registroUsuario);
-          redirect ("login.php");
-          exit;
-        }
-      }
-    } else {
-      //Si arriba en la variable $tipoConexion se coloco "MYSQL", entonces genero todo el trabajo pero con MYSQL.
-      //Aquí genero mi objeto usuario, partiendo de la clase Usuario
-      $usuario = new Usuario($_POST["nombre"],$_POST["apellido"],$_POST["sexo"],$_POST["edad"],$_POST["peso"],$_POST["altura"],$_POST["email"],$_POST["password"],$_FILES);
-      //Aquí verifico si los datos registrados por el usuario pasan las validaciones
-      $errores = $validar->validacionUsuario($usuario);
-      //De no existir errores entonces:
-      if (count($errores)==0) {
-        //Busco a ver si el usuario existe o no en la base de datos
-        $usuarioEncontrado = BaseMYSQL::buscarPorEmail($usuario->getEmail(),$pdo,'users');
-        if ($usuarioEncontrado != false) {
-          $errores["email"]= "Usuario ya registrado";
-        } else {
-          //Aquí guardo en el servidor la foto que el usuario seleccionó
-          $avatar = $registro->armarAvatar($usuario->getAvatar());
-          //Aquí procedo a guardar los datos del usuario en la base de datos, ,aquí le paso el objeto PDO, el objeto usuario, la tabla donde se va a guardar los datos y el nombre del archivo de la imagen del usuario.
-          BaseMYSQL::guardarUsuario($pdo,$usuario,'users',$avatar);
-          //Aquí redirecciono el usuario al login
-          redirect ("login.php");
-          exit;
-        }
-      }
+    $errores = validar($_POST,"registro");
+    if (count($errores)== 0) {
+      $perfil = armarperfil($_FILES);
+      $usuario = armaruser($_POST,$perfil);
+      guardaruser($usuario);
+      header("location: login.php");
+      exit;
     }
   }
 ?>
@@ -86,11 +51,11 @@
           <div class="form-group col-md-2">
             <label for="inputCity"> Sexo </label>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="gridRadios1" value="M" <?= (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == "M" )? "checked" : "" ; ?>>
+              <input class="form-check-input" type="radio" name="sexo" id="gridRadios1" value="M">
               <label class="form-check-label" for="gridRadios1"> Masculino </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="gridRadios2" value="F" <?= (isset($_SESSION["sexo"]) && $_SESSION["sexo"] == "F" )? "checked" : "" ; ?>>
+              <input class="form-check-input" type="radio" name="sexo" id="gridRadios2" value="F">
               <label class="form-check-label" for="gridRadios2"> Femenino </label>
             </div>
 

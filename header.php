@@ -12,13 +12,12 @@
     <?php else :?>
       <div class="topnav-right">
         <a href="logout.php">Logout</a>
-        <a href="edit.php">Editar Perfil</a>
+        <a href="carrerasObjetivo.php">Próximos Objetivos</a>
 
         <div>
-          <p class="saludo"><?= "Hola, ".$_SESSION["nombre"];?><img class="avatar" src="img/fotosUsers/<?=$_SESSION["imagen"];?>" alt="foto_perfil" height="30px"></p>
+          <p class="saludo"><?= "Hola, ".$_SESSION["nombre"];?>
+          <img class="avatar" src="img/fotosUsers/<?=$_SESSION["imagen"];?>" alt="foto_perfil"</p>
         </div>
-
-
       </div>
     <?php endif; ?>
   </div>

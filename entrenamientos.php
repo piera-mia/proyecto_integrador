@@ -24,38 +24,64 @@
     }
   }
 
-  $preguntas = Query::listado($pdo,"questions");
+  $usuarios = Query::listado($pdo,"users");
+  $entrenamientos = Query::listado($pdo,"training_sessions");
 ?>
 
 <!doctype html>
 <html>
   <?php include("head.php");?>
+  <link rel="stylesheet" href="css/styles.css">;
   <body>
     <div class="container">
       <?php include("header.php");?>
-      <main>
-          <h2> Preguntas frecuentes </h2>
+        <main>
+          <h2> Mira tu historial de entrenamiento... </h2>
           <br>
-    <div class="accordion" id="accordionExample">
 
-      <?php foreach ($preguntas as $key => $pregunta) : ?>
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle='collapse' data-target= '#collapseOne' aria-expanded="true" aria-controls="collapseOne">
-                <?=$pregunta['question'];?>
-              </button>
-            </h2>
-          </div>
-          <div id= 'collapseOne' class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-              <?=$pregunta['answer'];?>
-            </div>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-</main>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>
+                  Id
+                </th>
+                <th>
+                  Usuario
+                </th>
+                <th>
+                  Descripción
+                </th>
+                <th>
+                  Fecha
+                </th>
+              </tr>
+            </thread>
+            <tbody>
+              <?php foreach ($entrenamientos as $key => $entrenamiento) :?>
+              <tr>
+                <td>
+                  <?=$entrenamiento['id']?>
+                </td>
+                <td>
+                  <?php
+                  $usuario = query::mostrarUsuario($pdo,"users",$entrenamiento['id_user']);
+                  echo $usuario[0]['first_name'] . " " . $usuario[0]['last_name'];
+                  ?>
+                </td>
+                <td>
+                  <?=$entrenamiento['description']?>
+                </td>
+                <td>
+                  <?=$entrenamiento['date']?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+
+
+
+        </main>
 <?php include("footer.php");?>
 </div>
 

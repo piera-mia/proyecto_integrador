@@ -230,6 +230,7 @@ span {
 }
 
 .avatar {
-  margin-left: 10px;
-  display: inline;
+  vertical-align: middle;
+  height: 30px;
+  border-radius: 50%;
 }

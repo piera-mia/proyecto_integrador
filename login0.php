@@ -3,6 +3,25 @@
   require_once("controladores/funciones.php");
   if ($_POST) {
     $errores = validar($_POST,"login");
+      if (count($errores) == 0) {
+      $usuario = buscar_email($_POST["email"]);
+      if ($usuario == null) {
+        $errores["email"]= "Usuario / Contraseña invalidos";
+      } else {
+        if (password_verify($_POST["password"],$usuario["password"])==false) {
+          $errores["password"]="Usuario / Contraseña invalidos";
+        } else {
+          set_user($usuario,$_POST);
+          if (valid_access()) {
+            header("location: index.php");
+            exit;
+          } else {
+            header("location: login.php");
+            exit;
+          }
+        }
+      }
+    }
   }
 ?>
 
@@ -15,12 +34,12 @@
       <main>
         <form class="formLogin" action="" method="POST" enctype= "multipart/form-data">
           <div>
-            <h2> Recuperar contraseña </h2>
+            <h2> Login </h2>
             <br>
           </div>
 
           <div class="form-group">
-            <label for="exampleInputEmail1"> Por favor ingresá tu mail para recuperar tu clave: </label>
+            <label for="exampleInputEmail1"> Email </label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su email" name="email" value="<?= isset($errores["email"])? "": persistir("email") ?>">
             <?php if(isset($errores["email"])) :?>
               <span>
@@ -28,14 +47,26 @@
               </span>
             <?php endif; ?>
           </div>
-
-          <div class="login-boton">
-            <button type="submit" class="btn btn-primary"> Aceptar </button>
+          <div class="form-group">
+            <label for="exampleInputPassword1"> Contraseña </label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña" name="password">
+            <?php if(isset($errores["password"])) :?>
+              <span>
+            <?php echo $errores["password"] ?>
+              </span>
+            <?php endif; ?>
           </div>
-          <span><?= (count($errores) == 0)? "Le hemos enviado un correo electrónico a su casilla para verificar su contraseña": "" ?></span>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recordar">
+            <label class="form-check-label" for="exampleCheck1"> Recuérdame </label>
+          </div>
+          <div class="login-boton">
+            <button type="submit" class="btn btn-primary"> Ingresar </button>
+            <a class = "text-primary" href="recuperar_contras.php"> ¿Olvidó su contraseña? </a>
+          </div>
         </form>
-        <?php include("footer.php");?>
       </main>
+      <?php include("footer.php");?>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -24,38 +24,39 @@
     }
   }
 
-  $preguntas = Query::listado($pdo,"questions");
+  $usuarios = Query::listado($pdo,"users");
 ?>
 
 <!doctype html>
 <html>
   <?php include("head.php");?>
+  <link rel="stylesheet" href="css/styles.css">;
   <body>
     <div class="container">
       <?php include("header.php");?>
-      <main>
-          <h2> Preguntas frecuentes </h2>
+        <main>
+          <h2> Conoce nuestros runners... </h2>
           <br>
-    <div class="accordion" id="accordionExample">
 
-      <?php foreach ($preguntas as $key => $pregunta) : ?>
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle='collapse' data-target= '#collapseOne' aria-expanded="true" aria-controls="collapseOne">
-                <?=$pregunta['question'];?>
-              </button>
-            </h2>
-          </div>
-          <div id= 'collapseOne' class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-              <?=$pregunta['answer'];?>
-            </div>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-</main>
+            <?php foreach ($usuarios as $key => $usuario) : ?>
+
+              <div>
+                <img class= "fotoUsuario" src='img/fotosUsers/<?=$usuario['avatar']?>' alt="foto_Usuario" height="150px">
+                <h3 ><?=$usuario['first_name'];?> <?=$usuario['last_name'];?></h2>
+                <strong>Edad: </strong> <?=$usuario['age'];?>
+                <br>
+                <strong>Peso(kg): </strong> <?=$usuario['weight'];?>
+                <br>
+                <strong>Altura(cm): </strong> <?=$usuario['height'];?>
+                <br>
+                <strong>Email: </strong> <?=$usuario['email'];?>
+                <br>
+              </div>
+            <?php endforeach; ?>
+
+
+
+        </main>
 <?php include("footer.php");?>
 </div>
 

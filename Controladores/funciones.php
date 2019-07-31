@@ -24,10 +24,16 @@ function validar($datos,$bandera) {
     }
     if(isset($datos["edad"])) {
       $edad = trim($datos["edad"]);
-      if(!is_numeric($datos["edad"])) {
+      if(!empty($edad)&&!is_numeric($datos["edad"])) {
         $errores["edad"]="El campo debe ser un número";
       }
     }
+    // if(isset($datos["region"])) {
+    //   $region = trim($datos["region"]);
+    //   if(empty($region)) {
+    //     $errores["region"]="El campo no puede estar vacío";
+    //   }
+    // }
     if(isset($datos["peso"])) {
       $peso = trim($datos["peso"]);
       if (!empty($peso)&&!is_numeric($peso)) {
@@ -38,10 +44,15 @@ function validar($datos,$bandera) {
       $altura = trim($datos["altura"]);
       if (!empty($altura)&&!is_numeric($altura)) {
         $errores["altura"]="El campo debe ser un número";
-      } elseif ($altura < 100) {
+      } elseif (!empty($altura)&&($altura<100)) {
         $errores["altura"]="La altura debe ser al menos 100 cm";
       }
     }
+    // if(isset($datos["ritmo"])) {
+    //   if ($datos["ritmo"]=="Elige...") {
+    //     $errores["ritmo"]="Debe seleccionar un ritmo";
+    //   }
+    // }
     if(isset($datos["email"])) {
       $email = trim($datos["email"]);
       if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
@@ -56,6 +67,11 @@ function validar($datos,$bandera) {
           $errores["password"] = "El password debe tener como mínimo 6 caracteres";
       }
     }
+    // if(isset($datos["equipo"])) {
+    //   if (empty($datos["equipo"])) {
+    //     $errores["equipo"]="Debe indicar si ya forma parte de Runners Campana";
+    //   }
+    // }
     if (isset($_FILES)) {
       if ($_FILES["imagen"]["error"]!=0) {
           $errores["imagen"]="No se cargó la imagen";
@@ -106,10 +122,13 @@ function armaruser($datos,$imagen) {
         "apellido"=>$datos["apellido"],
         "sexo"=>$datos["sexo"],
         "edad"=>$datos["edad"],
+        // "region"=>$datos["region"],
         "peso"=>$datos["peso"],
         "altura"=>$datos["altura"],
+        // "ritmo"=>$datos["ritmo"],
         "email"=>$datos["email"],
         "password"=>password_hash($datos["password"],PASSWORD_DEFAULT),
+        // "equipo"=>$datos["equipo"],
         "imagen"=>$imagen
     ];
     return $usuario;
@@ -149,13 +168,13 @@ function set_user($usuario,$datos) {
     $_SESSION["apellido"]=$usuario["apellido"];
     $_SESSION["sexo"]=$usuario["sexo"];
     $_SESSION["edad"]=$usuario["edad"];
-    $_SESSION["region"]=$usuario["region"];
+    // $_SESSION["region"]=$usuario["region"];
     $_SESSION["peso"]=$usuario["peso"];
     $_SESSION["altura"]=$usuario["altura"];
-    $_SESSION["ritmo"]=$usuario["ritmo"];
+    // $_SESSION["ritmo"]=$usuario["ritmo"];
     $_SESSION["email"]=$usuario["email"];
     $_SESSION["password"]=$usuario["password"];
-    $_SESSION["equipo"]=$usuario["equipo"];
+    // $_SESSION["equipo"]=$usuario["equipo"];
     $_SESSION["imagen"]=$usuario["imagen"];
     if(isset($datos["recordar"])){
       $_SESSION["recordar"]=$datos["recordar"];

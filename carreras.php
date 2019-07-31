@@ -24,38 +24,37 @@
     }
   }
 
-  $preguntas = Query::listado($pdo,"questions");
+  $carreras = Query::listado($pdo,"races");
 ?>
 
 <!doctype html>
 <html>
   <?php include("head.php");?>
+  <link rel="stylesheet" href="css/styles.css">;
   <body>
     <div class="container">
       <?php include("header.php");?>
-      <main>
-          <h2> Preguntas frecuentes </h2>
+        <main>
+          <h2> Descubre tu próxima carrera... </h2>
           <br>
-    <div class="accordion" id="accordionExample">
 
-      <?php foreach ($preguntas as $key => $pregunta) : ?>
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle='collapse' data-target= '#collapseOne' aria-expanded="true" aria-controls="collapseOne">
-                <?=$pregunta['question'];?>
-              </button>
-            </h2>
-          </div>
-          <div id= 'collapseOne' class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-              <?=$pregunta['answer'];?>
-            </div>
-          </div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-</main>
+            <?php foreach ($carreras as $key => $carrera) : ?>
+
+              <div>
+                <img class= "fotoCarrera" src='img/fotosRaces/<?=$carrera['image']?>' alt="foto_Carrera" height="150px">
+                <h3 ><?=$carrera['name'];?></h2>
+                <strong>Descripción: </strong> <?=$carrera['description'];?>
+                <br>
+                <strong>Distancia(km): </strong> <?=$carrera['distance'];?>
+                <br>
+                <strong>Dificultad: </strong> <?=$carrera['difficulty'];?>
+                <br>
+              </div>
+            <?php endforeach; ?>
+
+
+
+        </main>
 <?php include("footer.php");?>
 </div>
 

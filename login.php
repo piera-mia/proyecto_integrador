@@ -1,28 +1,56 @@
 <?php
-  require_once("helpers.php");
-  require_once("controladores/funciones.php");
+  require_once("autoload.php");
+
   if ($_POST) {
-    $errores = validar($_POST,"login");
-      if (count($errores) == 0) {
-      $usuario = buscar_email($_POST["email"]);
-      if ($usuario == null) {
-        $errores["email"]= "Usuario / Contraseña invalidos";
-      } else {
-        if (password_verify($_POST["password"],$usuario["password"])==false) {
-          $errores["password"]="Usuario / Contraseña invalidos";
-        } else {
-          set_user($usuario,$_POST);
-          if (valid_access()) {
-            header("location: index.php");
-            exit;
+    $tipoConexion = "MYSQL";
+    if ($tipoConexion=="JSON") {
+        $usuario = new Usuario(null, null, null, null, null, null, $_POST["email"],$_POST["password"], null);
+        $errores= $validar->validacionLogin($usuario);
+        if(count($errores)==0) {
+          $usuarioEncontrado = $json->buscarPorEmail($usuario->getEmail());
+          if ($usuarioEncontrado == null) {
+            $errores["email"]="Usuario no registrado";
           } else {
-            header("location: login.php");
-            exit;
+            if (Autenticador::verificarPassword($usuario->getPassword(),$usuarioEncontrado["password"])!=true) {
+              $errores["password"]="Error en los datos ingresados";
+            } else {
+              Autenticador::seteoSesion($usuarioEncontrado);
+              if(isset($_POST["recordar"])) {
+                Autenticador::seteoCookie($usuarioEncontrado);
+              }
+              if(Autenticador::validarUsuario()) {
+                redirect("perfil.php");
+              } else {
+                redirect("registro.php");
+              }
+            }
+          }
+        }
+    } else {
+        $usuario = new Usuario(null, null, null, null, null, null, $_POST["email"],$_POST["password"], null);
+        $errores= $validar->validacionLogin($usuario);
+        if(count($errores)==0) {
+          $usuarioEncontrado = BaseMYSQL::buscarPorEmail($usuario->getEmail(),$pdo,'users');
+          if ($usuarioEncontrado == false) {
+            $errores["email"]="Usuario no registrado";
+          } else {
+            if(Autenticador::verificarPassword($usuario->getPassword(),$usuarioEncontrado["password"])!=true) {
+              $errores["password"]="Error en los datos ingresados";
+            } else {
+              Autenticador::seteoSesion($usuarioEncontrado);
+              if (isset($_POST["recordar"])) {
+                Autenticador::seteoCookie($usuarioEncontrado);
+              }
+              if (Autenticador::validarUsuario()) {
+                redirect("perfil.php");
+              } else {
+                redirect("registro.php");
+              }
+            }
           }
         }
       }
     }
-  }
 ?>
 
 <!doctype html>
@@ -55,7 +83,7 @@
             <?php echo $errores["password"] ?>
               </span>
             <?php endif; ?>
-          </div>          
+          </div>
           <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" name="recordar">
             <label class="form-check-label" for="exampleCheck1"> Recuérdame </label>
@@ -65,8 +93,8 @@
             <a class = "text-primary" href="recuperar_contras.php"> ¿Olvidó su contraseña? </a>
           </div>
         </form>
-        <?php include("footer.php");?>
       </main>
+      <?php include("footer.php");?>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
