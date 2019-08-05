@@ -35,24 +35,32 @@
     <div class="container">
       <?php include("header.php");?>
         <main>
-          <h2> Conoce nuestros runners... </h2>
+          <h2> Conoce a nuestros amigos runners... </h2>
           <br>
 
             <?php foreach ($usuarios as $key => $usuario) : ?>
-
-              <div>
+              <div class="col col-6 col-md-4">
+                <br>
                 <img class= "fotoUsuario" src='img/fotosUsers/<?=$usuario['avatar']?>' alt="foto_Usuario" height="150px">
-                <h3 ><?=$usuario['first_name'];?> <?=$usuario['last_name'];?></h2>
-                <strong>Edad: </strong> <?=$usuario['age'];?>
+                <h3><?=$usuario['first_name'];?> <?=$usuario['last_name'];?></h3>
+                <strong>Edad: </strong><?=$usuario['age'];?>
                 <br>
-                <strong>Peso(kg): </strong> <?=$usuario['weight'];?>
+                <strong>Peso (kg): </strong><?=$usuario['weight'];?>
                 <br>
-                <strong>Altura(cm): </strong> <?=$usuario['height'];?>
+                <strong>Altura (cm) :</strong><?=$usuario['height'];?>
                 <br>
-                <strong>Email: </strong> <?=$usuario['email'];?>
+                <strong>Email: </strong><?=$usuario['email'];?>
                 <br>
               </div>
             <?php endforeach; ?>
+
+            <!-- <div class="row">
+              <div class="col col-6 col-md-4">.col-6 .col-md-4</div>
+              <div class="col col-6 col-md-4">.col-6 .col-md-4</div>
+              <div class="col col-6 col-md-4">.col-6 .col-md-4</div>
+            </div> -->
+
+
 
 
 

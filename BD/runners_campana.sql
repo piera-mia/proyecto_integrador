@@ -104,6 +104,57 @@ INSERT INTO `users_goals` VALUES (1,NULL,NULL,1,2),(2,NULL,NULL,2,1),(3,NULL,NUL
 /*!40000 ALTER TABLE `users_goals` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `training_sessions`
+--
+DROP TABLE IF EXISTS `training_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `training_sessions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `description` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Dumping data for table `training_sessions`
+--
+LOCK TABLES `training_sessions` WRITE;
+/*!40000 ALTER TABLE `training_sessions` DISABLE KEYS */;
+INSERT INTO `training_sessions` VALUES (1,NULL,NULL,'6 pasadas de 200m','2019-07-10'),(2,NULL,NULL,'8 pasadas de 200m','2019-07-10'),(3,NULL,NULL,'10 pasadas de 200m','2019-07-10'),(4,NULL,NULL,'Testeo de 1 km','2019-07-11'),(5,NULL,NULL,'45 min de trote ritmo progresivo','2019-07-12'),(6,NULL,NULL,'10 km, 5 km a 5:15 y 5 km a 5:00','2019-07-13'),(7,NULL,NULL,'10 km, 5 km a 5:45 y 5 km a 5:35','2019-07-13');
+/*!40000 ALTER TABLE `training_sessions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_training_sessions`
+--
+DROP TABLE IF EXISTS `users_training_sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users_training_sessions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(10) unsigned NOT NULL,
+  `training_session_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_training_sessions_user_id_foreign` (`user_id`),
+  KEY `user_training_sessions_training_session_id_foreign` (`training_session_id`),
+  CONSTRAINT `user_training_sessions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `user_training_sessions_training_session_id_foreign` FOREIGN KEY (`training_session_id`) REFERENCES `training_sessions` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- Dumping data for table `users_training_sessions`
+--
+LOCK TABLES `users_training_sessions` WRITE;
+/*!40000 ALTER TABLE `users_training_sessions` DISABLE KEYS */;
+INSERT INTO `users_training_sessions` VALUES (1,NULL,NULL,1,1),(2,NULL,NULL,1,2),(3,NULL,NULL,1,3),(4,NULL,NULL,1,4),(5,NULL,NULL,1,3),(6,NULL,NULL,1,5),(7,NULL,NULL,1,3),(8,NULL,NULL,1,6),(9,NULL,NULL,2,1),(10,NULL,NULL,2,2),(11,NULL,NULL,2,3),(12,NULL,NULL,2,4),(13,NULL,NULL,2,3),(14,NULL,NULL,2,5),(15,NULL,NULL,2,3),(16,NULL,NULL,2,6);
+/*!40000 ALTER TABLE `users_training_sessions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

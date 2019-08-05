@@ -24,7 +24,7 @@
     }
   }
 
-  $carreras = Query::listado($pdo,"races");
+  $carreras = Query::listado($pdo,"goals");
 ?>
 
 <!doctype html>
@@ -35,25 +35,17 @@
     <div class="container">
       <?php include("header.php");?>
         <main>
-          <h2> Descubre tu próxima carrera... </h2>
+          <h2> Cuál será tu próximo desafío? </h2>
           <br>
-
             <?php foreach ($carreras as $key => $carrera) : ?>
-
               <div>
-                <img class= "fotoCarrera" src='img/fotosRaces/<?=$carrera['image']?>' alt="foto_Carrera" height="150px">
-                <h3 ><?=$carrera['name'];?></h2>
-                <strong>Descripción: </strong> <?=$carrera['description'];?>
+                <strong>Descripción: </strong> <?=$carrera['title'];?>
                 <br>
-                <strong>Distancia(km): </strong> <?=$carrera['distance'];?>
+                <strong>Fecha: </strong> <?=$carrera['goal_date'];?>
                 <br>
-                <strong>Dificultad: </strong> <?=$carrera['difficulty'];?>
-                <br>
+                <hr>
               </div>
             <?php endforeach; ?>
-
-
-
         </main>
 <?php include("footer.php");?>
 </div>

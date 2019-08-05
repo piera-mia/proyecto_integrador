@@ -1,32 +1,12 @@
 <?php
   require_once("autoload.php");
-
-  if ($_POST) {
-    $errores = validar($_POST,"login");
-      if (count($errores) == 0) {
-      $usuario = buscar_email($_POST["email"]);
-      if ($usuario == null) {
-        $errores["email"]= "Usuario / Contraseña invalidos";
-      } else {
-        if (password_verify($_POST["password"],$usuario["password"])==false) {
-          $errores["password"]="Usuario / Contraseña invalidos";
-        } else {
-          set_user($usuario,$_POST);
-          if (valid_access()) {
-            header("location: index.php");
-            exit;
-          } else {
-            header("location: login.php");
-            exit;
-          }
-        }
-      }
+    if (!isset($_SESSION["email"])) {
+        redirect("registro.php");
+    } else {
+      $sesionesUsuario = Query::sesionesUsuario($pdo,$_SESSION["email"]);
+      // dd($sesionesUsuario);
     }
-  }
-
-  $usuarios = Query::listado($pdo,"users");
-  $entrenamientos = Query::listado($pdo,"training_sessions");
-?>
+  ?>
 
 <!doctype html>
 <html>
@@ -43,12 +23,6 @@
             <thead>
               <tr>
                 <th>
-                  Id
-                </th>
-                <th>
-                  Usuario
-                </th>
-                <th>
                   Descripción
                 </th>
                 <th>
@@ -57,22 +31,13 @@
               </tr>
             </thread>
             <tbody>
-              <?php foreach ($entrenamientos as $key => $entrenamiento) :?>
+              <?php foreach ($sesionesUsuario as $key => $value) :?>
               <tr>
                 <td>
-                  <?=$entrenamiento['id']?>
+                  <?=$sesionesUsuario[$key]['description']?>
                 </td>
                 <td>
-                  <?php
-                  $usuario = query::mostrarUsuario($pdo,"users",$entrenamiento['id_user']);
-                  echo $usuario[0]['first_name'] . " " . $usuario[0]['last_name'];
-                  ?>
-                </td>
-                <td>
-                  <?=$entrenamiento['description']?>
-                </td>
-                <td>
-                  <?=$entrenamiento['date']?>
+                  <?=$sesionesUsuario[$key]['date']?>
                 </td>
               </tr>
               <?php endforeach; ?>

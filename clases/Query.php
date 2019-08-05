@@ -61,6 +61,19 @@ class Query {
         $listado = $consulta->fetchall(PDO::FETCH_ASSOC);
         return $listado;
     }
+
+    static public function sesionesUsuario($pdo,$email) {
+        $sql = "SELECT id FROM users WHERE email='$email'";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $idUsuario=$query->fetch(PDO::FETCH_ASSOC);
+        $id=$idUsuario['id'];
+        $sql = "SELECT training_sessions.description, training_sessions.date FROM training_sessions, users_training_sessions, users WHERE users_training_sessions.user_id=users.id AND users_training_sessions.training_session_id=training_sessions.id AND users.id='$id' ORDER BY training_sessions.date ASC";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $sesionesUsuario=$query->fetchAll(PDO::FETCH_ASSOC);
+        return $sesionesUsuario;
+    }
 }
 
 ?>

@@ -11,6 +11,7 @@ require_once("controladores/funciones.php");
       <?php include("header.php");?>
 
       <main>
+        <br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -57,7 +58,7 @@ require_once("controladores/funciones.php");
           <article class="seccion">
             <img class= "imagenSeccion" src="img/both-running.png" alt="">
             <h3 class= "tituloSeccion"> Usuarios </h3>
-            <p> Conoce a los runners que integran está magnífica comunidad y desafíalos a superarte. </p>
+            <p> Conoce a los runners que integran esta magnífica comunidad y desafíalos a superarte. </p>
             <a class="ingresarSeccion" href="usuarios.php"> Ingresar </a>
           </article>
         </div>
